@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "Everyone is a proponent of strong encryption."- Dorothy E. Denning | rot13
+echo "Everyone is a proponent of strong encryption."
+- Dorothy E. Denning | rot13
