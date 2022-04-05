@@ -1,2 +1,2 @@
 #!/bin/bash
-echo {a..z}{a..z} | ls -l | grep -v 'oo'
+echo $(26**2 - 1) |wc -l | tail -303 | head -10
