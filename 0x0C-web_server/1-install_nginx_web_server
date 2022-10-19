@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# A Bash script to install Nginx, listens on port 80, 
+# returns a webpage when querying nginx at root
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo service nginx restart
