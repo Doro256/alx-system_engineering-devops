@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# A Bash script
+apt-get -y install software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.0
+apt-get update
+apt-get -y install haproxy=2.0.\*
+echo "frontend http_front
+        bind *:80
+        stats uri /haproxy?stats
+        default_backend http_back
+backend http_back
+        balance roundrobin
+        server 42903-web-01 3.235.144.29:80 check
+        server 42903-web-02 54.237.10.80:80 check
+" >> /etc/haproxy/haproxy.cfg
+sudo systemctl restart haproxy
