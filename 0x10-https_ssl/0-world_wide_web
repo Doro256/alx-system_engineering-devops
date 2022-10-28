@@ -10,10 +10,10 @@ if [ $# -eq 1 ];
 then
     for i in "${subdomains[@]}"
     do
-        dig $i.$domain | grep -A1 'ANSWER SECTION:' > "file"
-        awk -v x="$x" 'NR == 2 {print "The subdomain "x" is a "$4" record and points to "$5}' file    
+        dig "$i"."$domain" | grep -A1 'ANSWER SECTION:' > "file"
+        awk -v i="$i" 'NR == 2 {print "The subdomain "x" is a "$4" record and points to "$5}' file    
     done
 else
-    dig $subdomain.$domain | grep -A1 'ANSWER SECTION:' > "file"
-    awk -v x="$subdomain" 'NR == 2 {print "The subdomain "x" is a "$4" record and points to "$5}' file
+    dig "$subdomain"."$domain" | grep -A1 'ANSWER SECTION:' > "file"
+    awk -v i="$subdomain" 'NR == 2 {print "The subdomain "x" is a "$4" record and points to "$5}' file
 fi
