@@ -48,6 +48,7 @@ frontend www-http
 
 frontend www-https
 	 bind *:443 ssl crt /etc/haproxy/certs/doro256.tech.pem
+	 http-request redirect scheme https unless { ssl_fc }
 	 reqadd X-Forwarded-Proto:\ https
 	 acl letsencrypt-acl path_beg /.well-known/acme-challenge/
 	 use_backend letsencrypt-backend if letsencrypt-acl
