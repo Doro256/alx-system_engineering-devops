@@ -10,7 +10,7 @@ echo "frontend http_front
         default_backend http_back
 backend http_back
         balance roundrobin
-        server 42903-web-01 3.235.144.29:80 check
-        server 42903-web-02 54.237.10.80:80 check
+        server 42903-web-01 54.236.45.115:80 check
+        server 42903-web-02 100.26.252.171:80 check
 " >> /etc/haproxy/haproxy.cfg
 sudo systemctl restart haproxy
