@@ -11,12 +11,14 @@ def recurse(subreddit, hot_list=[]):
                      .format(subreddit), headers={'User-agent': 'x'},
                      allow_redirects=False)
     ml = r.json().get('data').get('children')
-    if r.status_code != 200:
-        return None
-    # return [subreddit] + hot_list
-    if hot_list == []:
-        return None
-    else:
-        k = hot_list[0]
-        small_list = hot_list[1:]
-        return k + recurse(small_list)
+    if r.status_code == 200:
+        data = r.json()['data']
+        posts = data['children']
+        count = len(posts)
+        hot_list.extend(list(map(lambda x: x['data']['title'], posts)))
+        if count >= limit and data['after']:
+            return recurse(subreddit, hot_list, n + count, data['after'])
+        else:
+            return hot_list if hot_list else None
+        else:
+            return hot_list else None
