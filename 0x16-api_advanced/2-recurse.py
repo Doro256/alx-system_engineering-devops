@@ -10,7 +10,6 @@ def recurse(subreddit, hot_list=[]):
     r = requests.get(r'https://www.reddit.com/r/{}/hot/.json'
                      .format(subreddit), headers={'User-agent': 'x'},
                      allow_redirects=False)
-    ml = r.json().get('data').get('children')
     if r.status_code == 200:
         data = r.json()['data']
         posts = data['children']
